@@ -30,9 +30,15 @@ struct EmojiArtModel {
     init() {}
     
     private var uniqueEmojiId = 0
-    mutating func addEmoji(_ text: String, at location: (x: Int, y: Int), size: Int) {
+    mutating func addEmoji(_ text: String, at location: (x: Int, y: Int), size: Int) -> Emoji {
         uniqueEmojiId += 1
-        emojis.append(Emoji(text: text, x: location.x, y: location.y, size: size, id: uniqueEmojiId))
+        let new = Emoji(text: text, x: location.x, y: location.y, size: size, id: uniqueEmojiId)
+        emojis.append(new)
+        return new
+    }
+    
+    mutating func removeEmoji(_ emoji: Emoji) {
+        emojis.remove(emoji)
     }
 
 }
